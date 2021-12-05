@@ -32,6 +32,7 @@ public class AdjacentList {
             list.add(new ArrayList<>());
         }
 
+        // create edges
         for (String word1 : wordList){
             for(String word2: wordList){
                 int count=0;
@@ -49,7 +50,7 @@ public class AdjacentList {
         }
 
         System.out.println("No. of edges: "+edges/2);
-        System.out.println(getAllNeighbours("word"));
+        System.out.println(getAllNeighbours("foal"));
     }
     public static ArrayList<String> getAllNeighbours(String word){
         return list.get(word_map.get(word));
