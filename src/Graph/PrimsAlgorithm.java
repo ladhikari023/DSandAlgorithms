@@ -5,6 +5,10 @@ import java.util.Arrays;
 
 /*
     Time complexity is O(n^2)
+    Better way is to have adjacency list representation
+    Also using heap data structure
+    Instead of storing keys in an array we can store them in minHeap, extractMin operation O(logV)
+    It can be improved to O((V+E)*logV)
  */
 public class PrimsAlgorithm {
     public static void main(String[] args) {
