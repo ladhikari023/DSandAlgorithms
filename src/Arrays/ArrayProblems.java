@@ -1,5 +1,6 @@
 package Arrays;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class ArrayProblems {
@@ -44,7 +45,49 @@ public class ArrayProblems {
 
         int[] arr12 = {8,-4,3,-5,4};
         System.out.println(maxCircularSubArray(arr12));
+
+        // Maximum sum of given k sub_array
+        int[] arr13 = {1,8,30,-5,20,7};
+        int k = 3;
+        System.out.println(windowSlidingTechnique(arr13,k));
+
+        int[] arr14 = {1,2,3,4,5};
+        System.out.println(smallestPositiveMissingNumber(arr14));
     }
+
+    private static int smallestPositiveMissingNumber(int[] arr14) {
+        int n = arr14.length;
+        int maxSize = 0;
+        for (int i = 0; i < arr14.length; i++) {
+            maxSize = Math.max(maxSize,arr14[i]);
+        }
+        int[] sizeArr = new int[maxSize+2];
+        Arrays.fill(sizeArr,0);
+        for (int i = 0; i < n; i++) {
+            if(arr14[i]>0){
+                sizeArr[arr14[i]] = 1;
+            }
+        }
+        for (int i = 1; i < sizeArr.length; i++) {
+            if(sizeArr[i]==0) return i;
+        }
+        return -1;
+    }
+
+    private static int windowSlidingTechnique(int[] arr13, int k) {
+        int curr_max = arr13[0];
+        for (int i = 1; i < k; i++) {
+            curr_max += arr13[i];
+        }
+        int maxSum = curr_max;
+        for (int i = k; i < arr13.length; i++) {
+            curr_max += (arr13[i]-arr13[i-k]);
+            maxSum = Math.max(curr_max,maxSum);
+        }
+        return maxSum;
+    }
+
+
 
     private static int maxCircularSubArray(int[] arr12) {
         int max_normal = maximumSubArray(arr12);
